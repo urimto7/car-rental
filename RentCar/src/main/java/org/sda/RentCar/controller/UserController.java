@@ -23,8 +23,8 @@ public class UserController {
         return ResponseEntity.ok(userService.findById(id));
 
     }
-    @PutMapping
-    public void update(@RequestBody UserDTO userDTO){
+    @PutMapping("/{id}")
+    public void update(@PathVariable Integer id,@RequestBody UserDTO userDTO){
         userService.update(userDTO);
     }
     @DeleteMapping("/{id}")
