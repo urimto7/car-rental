@@ -1,16 +1,19 @@
 package org.sda.RentCar.service.impl;
 
+import org.sda.RentCar.controller.CarController;
 import org.sda.RentCar.converter.ReservationsConverter;
 import org.sda.RentCar.dto.ReservationsDTO;
 import org.sda.RentCar.exception.NotFoundException;
 import org.sda.RentCar.model.Reservations;
 import org.sda.RentCar.model.User;
+import org.sda.RentCar.repository.CarRepository;
 import org.sda.RentCar.repository.ReservationsRepository;
 import org.sda.RentCar.repository.UserRepository;
 import org.sda.RentCar.service.ReservationsService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.sda.RentCar.model.Car;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,11 +27,14 @@ public class ReservationsServiceImpl implements ReservationsService {
     private ReservationsRepository reservationsRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private CarRepository carRepository;
 
     public void add(ReservationsDTO reservationsDTO) {
         User user = userRepository.findById(reservationsDTO.getUserDTO().getId())
                 .orElseThrow(() -> new NotFoundException("User Not found with ID " + reservationsDTO.getUserDTO().getId()));
-        Reservations reservations = ReservationsConverter.toEntity(reservationsDTO,user,car);
+        Reservations reservations = ReservationsConverter.toEntity(reservationsDTO,user,carRepository.findById(reservationsDTO.getCarDTO().getId())
+                .orElseThrow(() -> new NotFoundException("CAR Not found with ID " + reservationsDTO.getCarDTO().getId())));
         reservationsRepository.save(reservations);
 
     }

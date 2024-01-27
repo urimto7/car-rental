@@ -1,6 +1,7 @@
 package org.sda.RentCar.converter;
 
 import org.sda.RentCar.dto.ReservationsDTO;
+import org.sda.RentCar.model.Car;
 import org.sda.RentCar.model.Reservations;
 import org.sda.RentCar.model.User;
 
