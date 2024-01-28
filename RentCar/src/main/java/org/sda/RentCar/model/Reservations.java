@@ -22,10 +22,8 @@ public class Reservations {
     @Column(name = "status")
     private String status;
     @ManyToOne
-  ///  @JoinColumn (name = "id_user", referencedColumnName = "id")
     private User user;
     @ManyToOne
-    //@JoinColumn(name = "id_car", referencedColumnName = "id")
     private Car car;
 
 }

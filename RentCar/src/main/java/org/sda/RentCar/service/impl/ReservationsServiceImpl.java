@@ -33,7 +33,8 @@ public class ReservationsServiceImpl implements ReservationsService {
     public void add(ReservationsDTO reservationsDTO) {
         User user = userRepository.findById(reservationsDTO.getUserDTO().getId())
                 .orElseThrow(() -> new NotFoundException("User Not found with ID " + reservationsDTO.getUserDTO().getId()));
-        Reservations reservations = ReservationsConverter.toEntity(reservationsDTO,user,carRepository.findById(reservationsDTO.getCarDTO().getId())
+        Reservations reservations = ReservationsConverter.toEntity(reservationsDTO,user
+                ,carRepository.findById(reservationsDTO.getCarDTO().getId())
                 .orElseThrow(() -> new NotFoundException("CAR Not found with ID " + reservationsDTO.getCarDTO().getId())));
         reservationsRepository.save(reservations);
 
