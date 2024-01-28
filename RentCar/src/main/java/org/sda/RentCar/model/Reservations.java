@@ -21,11 +21,11 @@ public class Reservations {
     private int days;
     @Column(name = "status")
     private String status;
-    @OneToMany
-    @JoinColumn (name = "id_user", referencedColumnName = "id")
+    @ManyToOne
+  ///  @JoinColumn (name = "id_user", referencedColumnName = "id")
     private User user;
-    @OneToMany
-    @JoinColumn(name = "id_car", referencedColumnName = "id")
+    @ManyToOne
+    //@JoinColumn(name = "id_car", referencedColumnName = "id")
     private Car car;
 
 }
