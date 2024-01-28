@@ -5,7 +5,7 @@ import org.sda.RentCar.dto.UserDTO;
 import java.util.List;
 
 public interface UserService {
-    void add(UserDTO userDTO);
+    UserDTO add(UserDTO userDTO);
     void update(UserDTO userDTO);
     void delete(Integer id);
     UserDTO findById(Integer id);

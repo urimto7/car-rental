@@ -17,12 +17,10 @@ public class BranchUser {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_users",
-            referencedColumnName = "id_users")
+    @JoinColumn(name = "id_user")
     private User user;
     @ManyToOne
-    @JoinColumn(name = "id_branch",
-            referencedColumnName = "id_branch")
+    @JoinColumn(name = "id_branch")
     private Branch branch;
 
 }

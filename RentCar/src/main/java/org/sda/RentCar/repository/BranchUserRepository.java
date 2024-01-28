@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public interface BranchUserRepository extends JpaRepository<BranchUser, Integer>{
-    List<BranchUser> findAllUsersByBranchId(SingularAttribute<AbstractPersistable, Serializable> id);
-    List<BranchUser> findAllBranchByUserId(SingularAttribute<AbstractPersistable, Serializable> id);
+    List<BranchUser> findAllUsersByBranchId(Integer id);
+    List<BranchUser> findAllBranchByUserId(Integer id);
 
 }

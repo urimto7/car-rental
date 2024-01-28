@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public void add(UserDTO userDTO) {
+    public UserDTO add(UserDTO userDTO) {
         if(!userRepository.findAllByEmail(userDTO.getEmail()).isEmpty()){
             throw new ArithmeticException("Ky email egziston");
         }
@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
             throw new NotAllowedException("Ky username egziston");
         }
         User user= UserConverter.toEntity(userDTO);
-        userRepository.save(user);
+        return UserConverter.toDTO( userRepository.save(user));
     }
 
     @Override
