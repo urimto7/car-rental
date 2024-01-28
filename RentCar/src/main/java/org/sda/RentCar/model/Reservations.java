@@ -22,8 +22,10 @@ public class Reservations {
     @Column(name = "status")
     private String status;
     @ManyToOne
+    @JoinColumn(name = "id_user")
     private User user;
     @ManyToOne
+    @JoinColumn(name = "id_car")
     private Car car;
 
 }
