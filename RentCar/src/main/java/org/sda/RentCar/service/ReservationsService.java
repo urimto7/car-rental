@@ -6,7 +6,7 @@ import java.util.List;
 public interface ReservationsService {
 
 
-        void add(ReservationsDTO reservationDTO);
+        ReservationsDTO add (ReservationsDTO reservationDTO);
         void update(ReservationsDTO reservationDTO);
         void delete(Integer id);
         ReservationsDTO findById(Integer id);

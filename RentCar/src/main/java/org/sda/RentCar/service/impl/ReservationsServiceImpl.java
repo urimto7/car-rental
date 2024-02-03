@@ -1,6 +1,7 @@
 package org.sda.RentCar.service.impl;
 
 import org.sda.RentCar.controller.CarController;
+import org.sda.RentCar.converter.CarConverter;
 import org.sda.RentCar.converter.ReservationsConverter;
 import org.sda.RentCar.dto.ReservationsDTO;
 import org.sda.RentCar.exception.NotFoundException;
@@ -30,15 +31,21 @@ public class ReservationsServiceImpl implements ReservationsService {
     @Autowired
     private CarRepository carRepository;
 
-    public void add(ReservationsDTO reservationsDTO) {
+    public ReservationsDTO add(ReservationsDTO reservationsDTO) {
         User user = userRepository.findById(reservationsDTO.getUserDTO().getId())
+                .orElseThrow(() -> new NotFoundException("User Not found with ID " + reservationsDTO.getUserDTO().getId()));
+        Car car = carRepository.findById(reservationsDTO.getUserDTO().getId())
                 .orElseThrow(() -> new NotFoundException("User Not found with ID " + reservationsDTO.getUserDTO().getId()));
         Reservations reservations = ReservationsConverter.toEntity(reservationsDTO,user
                 ,carRepository.findById(reservationsDTO.getCarDTO().getId())
                 .orElseThrow(() -> new NotFoundException("CAR Not found with ID " + reservationsDTO.getCarDTO().getId())));
         reservationsRepository.save(reservations);
+        Reservations reservations1= ReservationsConverter.toEntity(reservationsDTO,user,car);
+        return ReservationsConverter.toDTO( reservationsRepository.save(reservations1));
 
     }
+
+
 
     @Override
     public void update(ReservationsDTO reservationDTO) {

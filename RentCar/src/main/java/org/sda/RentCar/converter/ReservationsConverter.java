@@ -19,9 +19,9 @@ public class ReservationsConverter {
     }
     public static ReservationsDTO toDTO(Reservations reservation) {
         ReservationsDTO reservationDTO = new ReservationsDTO();
-        reservationDTO.setIdReservation(reservation.getId());
+        reservationDTO.setIdReservation(null != reservation.getId() ? reservation.getId() : 0);
         reservationDTO.setUsername(reservation.getUsername());
-        reservationDTO.setPickUpDate(reservationDTO.getPickUpDate());
+        reservationDTO.setPickUpDate(reservation.getPickupDate());
         reservationDTO.setDays(reservation.getDays());
         reservationDTO.setStatus(reservation.getStatus());
         reservationDTO.setUserDTO(UserConverter.toDTO(reservation.getUser()));

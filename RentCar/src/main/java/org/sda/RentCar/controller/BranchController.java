@@ -29,7 +29,8 @@ public class BranchController {
 
     @PutMapping
     public void update(@RequestBody BranchDTO branchDTO) {
-        branchService.update(branchDTO);}
+        branchService.update(branchDTO);
+    }
 
     @DeleteMapping
     public void delete(@PathVariable Integer id) {
@@ -37,7 +38,8 @@ public class BranchController {
 
     @GetMapping
     public ResponseEntity<List<BranchDTO>> findAll() {
-        return ResponseEntity.ok(branchService.findAll());}
+        return ResponseEntity.ok(branchService.findAll());
+    }
 
 
 

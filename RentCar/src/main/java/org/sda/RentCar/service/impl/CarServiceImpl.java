@@ -20,9 +20,10 @@ public class CarServiceImpl implements CarService {
     @Autowired
     private CarRepository carRepository;
     @Override
-    public void add(CarDTO carDTO) {
+    public CarDTO add(CarDTO carDTO) {
+
         Car car= CarConverter.toEntity(carDTO);
-        carRepository.save(car);
+        return CarConverter.toDTO( carRepository.save(car));
 
     }
 
